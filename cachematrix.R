@@ -4,19 +4,19 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   cachedInvertion = null
-
+  
   ## retrieve the original matrix
   get <- function() {
     x
   }
   
   ## cache the inverted matrix
-  setCachedInvertion(inv) {
+  setCachedInvertion <- function(inv) {
     cachedInvertion <<- inv
   }
   
   ## retrieve the cached value
-  getCachedInvertion() {
+  getCachedInvertion <- function() {
     cachedInvertion
   }
   
@@ -29,13 +29,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Return the invert of a matrix. Takes advantage of caching to improve the process
 
 cacheSolve <- function(x, ...) {
-        ## check if the invert has already been computed
-        cached <- x$getCachedInvertion()
-        if (is.null(cached)) {
-            ## no, we need to compute it
-            cached <- solve(x$get())
-            ## and we cache it in the object
-            x$setCachedInvertion(cached)
-        }
-        cached
+  ## check if the invert has already been computed
+  cached <- x$getCachedInvertion()
+  if (is.null(cached)) {
+    ## no, we need to compute it
+    cached <- solve(x$get(),...)
+    ## and we cache it in the object
+    x$setCachedInvertion(cached)
+  }
+  cached
 }
